@@ -16,7 +16,8 @@ const {
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const HOST = process.env.HOST || 'localhost';
+const HOST = '0.0.0.0';
+
 
 /**
  * MIDDLEWARE DE SÉCURITÉ
@@ -226,7 +227,7 @@ const startServer = async () => {
     console.log('✅ Dossiers d\'upload créés');
 
     // Démarrer le serveur HTTP
-    const server = app.listen(PORT, HOST, () => {
+    const server = app.listen(PORT, '0.0.0.0', () => {
       console.log(`\n✅ Serveur démarré avec succès !`);
       console.log(`📍 URL: http://${HOST}:${PORT}`);
       console.log(`🌍 Environnement: ${process.env.NODE_ENV || 'development'}`);
