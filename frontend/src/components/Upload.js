@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { generateKey, exportKey, encryptFile, isWebCryptoSupported, formatFileSize } from '../utils/crypto';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Upload = () => {
   const [status, setStatus] = useState('idle');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -56,7 +58,8 @@ const Upload = () => {
       formData.append('maxDownloads', maxDownloads);
       formData.append('expiryHours', expiryHours);
 
-      const response = await axios.post('/api/upload', formData, {
+      const response = await axios.post(`${API_URL}/api/upload`, formData, {
+
         headers: { 'Content-Type': 'multipart/form-data' },
         onUploadProgress: (e) => {
           const percent = Math.round((e.loaded / e.total) * 30);

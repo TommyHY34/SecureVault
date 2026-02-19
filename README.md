@@ -39,6 +39,7 @@ psql -U securevault_user -d securevault -f backend/sql/schema.sql
 ```bash
 cd backend
 npm install
+ docker run --name securevault-db  -e POSTGRES_USER=securevault_user  -e POSTGRES_PASSWORD='Sv@Secure2026!'  -e POSTGRES_DB=securevault  -p 5432:5432  -d postgres:13
 npm run dev
 ```
 
