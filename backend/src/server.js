@@ -15,6 +15,11 @@ const {
 } = require('./middleware/security');
 
 const app = express();
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
+
 const PORT = process.env.PORT || 3001;
 const HOST = '0.0.0.0';
 
@@ -44,6 +49,15 @@ const allowedOrigins = [
   'https://*.githubpreview.dev', // GitHub Codespaces
   'https://*.github.dev' // GitHub Codespaces
 ].filter(Boolean);
+
+app.use(cors({
+  origin: true,
+  credentials: true,
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.options('*', cors());
 
 app.use(cors({
   origin: (origin, callback) => {
